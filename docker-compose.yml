@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: zoo_postgres
+    environment:
+      POSTGRES_DB: zoo_db
+      POSTGRES_USER: zoo_user
+      POSTGRES_PASSWORD: zoo_pass
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zoo_user -d zoo_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
