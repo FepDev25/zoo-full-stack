@@ -1,0 +1,35 @@
+[project]
+name = "zoo-backend"
+version = "0.1.0"
+description = "Zoo Management System REST API backend"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115,<0.116",
+    "uvicorn[standard]>=0.30,<0.31",
+    "sqlalchemy[asyncio]>=2.0,<2.1",
+    "asyncpg>=0.29,<0.30",
+    "alembic>=1.13,<1.14",
+    "pydantic>=2.7,<2.8",
+    "pydantic-settings>=2.3,<2.4",
+    "python-dotenv>=1.0,<1.1",
+    "psycopg2-binary>=2.9.11",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2,<8.3",
+    "pytest-asyncio>=0.23,<0.24",
+    "httpx>=0.27,<0.28",
+    "anyio>=4.4,<4.5",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+zoo-api = "app.main:app"
+
+[tool.setuptools]
+packages = ["app"]
